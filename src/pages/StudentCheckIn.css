@@ -1,0 +1,31 @@
+.checkin {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 6px;
+}
+.checkin form, .checkin ul {
+  margin-top: 1rem;
+}
+.checkin label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.checkin select, .checkin textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+}
+.checkin button {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+}
+/* add to each page’s CSS file or to a shared file */
+.page-panel {
+  background: var(--bg-panel);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  margin-top: 1.5rem;
+}

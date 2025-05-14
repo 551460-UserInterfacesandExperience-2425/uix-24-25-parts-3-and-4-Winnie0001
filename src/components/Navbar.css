@@ -1,0 +1,115 @@
+/* Mobile: stack the nav links, hide spacer */
+@media (max-width: 600px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* First row: nav links centered */
+  .navbar > div:first-child {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Hide spacer on mobile */
+  .navbar-spacer {
+    display: none;
+  }
+
+  /* Right items on a new line, centered */
+  .navbar-user,
+  .logout-button {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+}
+/* Mobile: stack the nav links, hide spacer */
+@media (max-width: 600px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* First row: nav links centered */
+  .navbar > div:first-child {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Hide spacer on mobile */
+  .navbar-spacer {
+    display: none;
+  }
+
+  /* Right items on a new line, centered */
+  .navbar-user,
+  .logout-button {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: var(--bg-panel);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar a {
+  margin-right: 1.25rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar a.active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.navbar-spacer { flex: 1; }
+
+.navbar-user {
+  margin-right: 1rem;
+  font-size: 0.9rem;
+}
+
+.logout-button {
+  background: transparent;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.logout-button:hover { text-decoration: underline; }
+/* Navbar.css */
+
+.navbar a {
+  margin-right: 1rem;
+  position: relative;
+  padding: 0.25rem 0;
+  transition: color var(--transition);
+}
+.navbar a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--color-primary);
+  transition: width var(--transition);
+}
+.navbar a:hover::after,
+.navbar a.active::after {
+  width: 100%;
+}
+.navbar a:hover {
+  color: var(--color-primary-75);
+}

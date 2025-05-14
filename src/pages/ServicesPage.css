@@ -1,0 +1,55 @@
+.services {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 6px;
+}
+
+.booking-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.booking-form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-form button {
+  grid-column: 1 / -1;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.booking-list {
+  margin-top: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.booking-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+/* Mobile: stack form fields */
+@media (max-width: 600px) {
+  .booking-form {
+    grid-template-columns: 1fr;
+  }
+}
+/* Mobile: stack form fields */
+@media (max-width: 600px) {
+  .booking-form {
+    grid-template-columns: 1fr;
+  }
+}
+/* add to each page’s CSS file or to a shared file */
+.page-panel {
+  background: var(--bg-panel);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  margin-top: 1.5rem;
+}
