@@ -1,36 +1,53 @@
-import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import './Navbar.css';
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate }           from "react-router-dom";
+import "./Navbar.css";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const email = localStorage.getItem('userEmail') || '';
+  const email    = localStorage.getItem("userEmail");
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light"
+  );
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () =>
+    setTheme((t) => (t === "light" ? "dark" : "light"));
 
   const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('userEmail');
-    navigate('/login');
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userEmail");
+    navigate("/login");
   };
 
   return (
     <nav className="navbar">
-      {/* Left-aligned nav links */}
-      <div>
-        <NavLink to="/"         end>Home</NavLink>
+      <div className="nav-left">
+        <NavLink to="/"       end>Home</NavLink>
         <NavLink to="/checkin">Check-In</NavLink>
         <NavLink to="/dashboard">Dashboard</NavLink>
         <NavLink to="/services">Services</NavLink>
+        <NavLink to="/about">About Us</NavLink>
+        <NavLink to="/emergency">Emergency</NavLink>
         <NavLink to="/login">Login</NavLink>
       </div>
 
-      {/* Spacer pushes the next items to the right */}
       <div className="navbar-spacer" />
 
-      {/* Right-aligned user greeting and logout */}
-      {email && <span className="navbar-user">Hi, {email}</span>}
-      <button onClick={handleLogout} className="logout-button">
-        Logout
+      <button onClick={toggleTheme} className="btn theme-toggle">
+        {theme === "light" ? "🌙 Dark" : "☀️ Light"}
       </button>
+
+      {email && <span className="navbar-user">Hi, {email}</span>}
+
+      {email && (
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
+      )}
     </nav>
   );
 }

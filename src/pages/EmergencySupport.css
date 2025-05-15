@@ -1,0 +1,180 @@
+.page-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.emergency-page h2 {
+  color: #d32f2f;
+  margin-bottom: 0.5rem;
+}
+
+.emergency-page p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.button-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.btn-emergency,
+.btn-nhs {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-emergency {
+  background-color: #d32f2f;
+}
+
+.btn-nhs {
+  background-color: #e57373;
+}
+
+.btn-emergency:hover {
+  background-color: #b71c1c;
+}
+
+.btn-nhs:hover {
+  background-color: #c62828;
+}
+
+.support-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.support-list li {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.support-list a {
+  color: #0288d1;
+  text-decoration: none;
+}
+
+.support-list a:hover {
+  text-decoration: underline;
+}
+
+.btn-chat {
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-chat:hover {
+  background-color: #0d47a1;
+}
+.emergency-page h2 {
+  color: #c62828;
+}
+
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.btn.emergency {
+  background: #c62828;
+}
+
+.btn.nhs {
+  background: #e53935;
+}
+
+a.btn {
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn.chat {
+  margin-top: 1rem;
+  background: #1565c0;
+}
+.page-container.emergency-page {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: var(--panel);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  color: var(--fg);
+}
+
+.em-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.btn-em-red,
+.btn-em-light,
+.btn-em-chat {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-em-red {
+  background: #e53935;
+  color: white;
+}
+
+.btn-em-light {
+  background: #ef5350;
+  color: white;
+}
+
+.other-lines {
+  margin-top: 1.5rem;
+}
+
+.other-lines a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.other-lines a:hover {
+  text-decoration: underline;
+}
+
+.chat-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.btn-em-chat {
+  background: var(--accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-em-chat:hover {
+  filter: brightness(1.1);
+}
