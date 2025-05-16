@@ -3,60 +3,81 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
-const USERS = [
-  { email: 'student@example.com',    password: 'stud123',  role: 'student' },
-  { email: 'supervisor@example.com', password: 'sup123',    role: 'supervisor' },
-  { email: 'tutor@example.com',      password: 'tutor123',  role: 'senior-tutor' },
-];
+const USER_ROLES = {
+  'student@example.com': 'student',
+  'supervisor@example.com': 'supervisor',
+  'tutor@example.com': 'senior-tutor',
+};
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const [email,    setEmail]    = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('student');
   const [remember, setRemember] = useState(false);
-  const [error,    setError]    = useState('');
+  const [error, setError] = useState('');
 
-  // on mount, load remembered email
   useEffect(() => {
     const saved = localStorage.getItem('rememberedEmail');
     if (saved) {
       setEmail(saved);
       setRemember(true);
+      if (USER_ROLES[saved]) {
+        setRole(USER_ROLES[saved]);
+      }
     }
   }, []);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const user = USERS.find(u => u.email === email && u.password === password);
+  const handleEmailChange = (value) => {
+    setEmail(value);
+    setError('');
+    if (USER_ROLES[value]) {
+      setRole(USER_ROLES[value]);
+    }
+  };
 
-    if (!user) {
-      setError('Invalid email or password');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      setError('Email and password are required.');
       return;
     }
 
-    // save login state
+    // Save login state
     localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('userEmail',   user.email);
-    localStorage.setItem('userRole',    user.role);
+    localStorage.setItem('userEmail', email);
+    localStorage.setItem('userRole', role);
 
-    // remember or forget the email
     if (remember) {
-      localStorage.setItem('rememberedEmail', user.email);
+      localStorage.setItem('rememberedEmail', email);
     } else {
       localStorage.removeItem('rememberedEmail');
     }
 
-    // redirect based on role
-    if (user.role === 'student') {
-      navigate('/checkin');
-    } else {
-      navigate('/dashboard');
-    }
+    // ✅ Redirect all users to the unified home page
+    navigate('/home');
   };
 
   return (
     <div className="login-page">
       <h2>Login</h2>
+
+      <div style={{
+        fontSize: '0.9rem',
+        marginBottom: '1rem',
+        background: '#fff3cd',
+        padding: '0.75rem',
+        borderRadius: '6px',
+        color: '#856404',
+        border: '1px solid #ffeeba'
+      }}>
+        <strong>Test Login Credentials:</strong><br />
+        Student → <code>student@example.com</code> / <code>stud123</code><br />
+        Supervisor → <code>supervisor@example.com</code> / <code>sup123</code><br />
+        Senior Tutor → <code>tutor@example.com</code> / <code>tutor123</code>
+      </div>
+
       {error && <div className="error">{error}</div>}
 
       <form onSubmit={handleSubmit} className="login-form">
@@ -65,7 +86,7 @@ export default function LoginPage() {
           <input
             type="email"
             value={email}
-            onChange={e => { setEmail(e.target.value); setError(''); }}
+            onChange={e => handleEmailChange(e.target.value)}
             required
           />
         </label>
@@ -78,6 +99,19 @@ export default function LoginPage() {
             onChange={e => { setPassword(e.target.value); setError(''); }}
             required
           />
+        </label>
+
+        <label>
+          Role:
+          <select
+            value={role}
+            onChange={e => setRole(e.target.value)}
+            required
+          >
+            <option value="student">Student</option>
+            <option value="supervisor">Personal Supervisor</option>
+            <option value="senior-tutor">Senior Tutor</option>
+          </select>
         </label>
 
         <label className="remember-me">

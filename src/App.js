@@ -1,35 +1,34 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar.jsx';
+// src/App.jsx
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-import HomePage            from './pages/HomePage.jsx';
-import StudentCheckIn      from './pages/StudentCheckIn.jsx';
-import SupervisorDashboard from './pages/SupervisorDashboard.jsx';
-import ServicesPage        from './pages/ServicesPage.jsx';
-import AboutPage           from './pages/AboutPage.jsx';
-import EmergencySupport    from './pages/EmergencySupport.jsx';
-import LoginPage           from './pages/LoginPage.jsx';
+import LoginPage from './pages/LoginPage';
+import StudentCheckIn from './pages/StudentCheckIn';
+import SupervisorDashboard from './pages/SupervisorDashboard';
+import EmergencySupport from './pages/EmergencySupport';
+import ChatPage from './pages/ChatPage';
+import ServicesPage from './pages/ServicesPage';
+import HomePage from './pages/HomePage';
+import STDashboard from './pages/STDashboard.jsx';
 
-export default function App() {
+// Protected route component
+const ProtectedRoute = ({ element }) => {
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  return isLoggedIn ? element : <Navigate to="/" replace />;
+};
+
+function App() {
   return (
-    <>
-      <Navbar />
-
-      <main style={{ padding: '1rem' }}>
-        <Routes>
-          <Route path="/"          element={<HomePage />} />
-          <Route path="/checkin"   element={<StudentCheckIn />} />
-          <Route
-            path="/dashboard"
-            element={<SupervisorDashboard />}
-          />
-          <Route path="/services"  element={<ServicesPage />} />
-          <Route path="/about"     element={<AboutPage />} />
-          <Route path="/emergency" element={<EmergencySupport />} />
-          <Route path="/login"     element={<LoginPage />} />
-          <Route path="*"          element={<h2>404: Page Not Found</h2>} />
-        </Routes>
-      </main>
-    </>
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/home" element={<ProtectedRoute element={<HomePage />} />} />
+      <Route path="/checkin" element={<ProtectedRoute element={<StudentCheckIn />} />} />
+      <Route path="/supervisor-dashboard" element={<ProtectedRoute element={<SupervisorDashboard />} />} />
+      <Route path="/emergency" element={<ProtectedRoute element={<EmergencySupport />} />} />
+      <Route path="/chat" element={<ProtectedRoute element={<ChatPage />} />} />
+      <Route path="/services" element={<ProtectedRoute element={<ServicesPage />} />} />
+      <Route path="/st-dashboard" element={<ProtectedRoute element={<STDashboard />} />} />
+    </Routes>
   );
 }
+
+export default App;
